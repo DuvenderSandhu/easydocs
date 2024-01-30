@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sleek Meeting Form</title>
+  <script type="text/javascript" src="http://vaani.neechalkaran.com/Scripts/google_jsapi.js">
+</script>
+<script type="text/javascript">
+
+  // Load the Google Transliterate API
+  google.load("elements", "1", {
+        packages: "transliteration"
+      });
+
+  function onLoad() {
+    var options = {
+        sourceLanguage:
+            google.elements.transliteration.LanguageCode.ENGLISH,
+        destinationLanguage:
+            [google.elements.transliteration.LanguageCode.HINDI],
+        shortcutKey: 'ctrl+b',
+        transliterationEnabled: true
+    };
+
+    // Create an instance on TransliterationControl with the required
+    // options.
+    var control =
+        new google.elements.transliteration.TransliterationControl(options);
+
+    // Enable transliteration in the textbox with id
+    // 'transliterateTextarea'.
+    control.makeTransliteratable(['transliterateTextarea']);
+  }
+  google.setOnLoadCallback(onLoad);
+</script>
+<script type="text/javascript">
+
+  // Load the Google Transliterate API
+  google.load("elements", "1", {
+        packages: "transliteration"
+      });
+
+  function onLoad() {
+    var options = {
+        sourceLanguage:
+            google.elements.transliteration.LanguageCode.ENGLISH,
+        destinationLanguage:
+            [google.elements.transliteration.LanguageCode.HINDI],
+        shortcutKey: 'ctrl+b',
+        transliterationEnabled: true
+    };
+
+    // Create an instance on TransliterationControl with the required
+    // options.
+    var control =
+        new google.elements.transliteration.TransliterationControl(options);
+
+    // Enable transliteration in the textbox with id
+    // 'transliterateTextarea'.
+    control.makeTransliteratable(['transliterateTextarea2']);
+  }
+  google.setOnLoadCallback(onLoad);
+</script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    .form {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    select, textarea {
+      resize: vertical;
+    }
+    button {
+      padding: 12px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+    
+    <div class="form" >
+      <h1>ग्राम पंचायत मोहनी</h1>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="pradhan">Pradhan Name:</label>
+    <select id="pradhan" name="pradhan" required>
+      <option value="श्री लाल चंद">श्री लाल चंद</option>
+      <!-- Add more options as needed -->
+    </select>
+
+    <label for="mode">Mode of Meeting:</label>
+    <select id="mode" name="mode" required>
+      <option value="ग्राम सभा"> ग्राम सभा </option>
+      <option value="साधारण बैठक"> साधारण बैठक </option>
+      <option value="मासिक बैठक"> मासिक बैठक </option>
+    </select>
+
+    <label for="attendance">Attendance:</label>
+    <input type="number" min="0" max="509" id="attendance" name="attendance" required>
+
+    <label for="meetingNumber">Meeting Number:</label>
+    <input type="number" min="1" id="meetingNumber" name="meetingNumber" required>
+
+    <label for="heading">Heading:</label>
+    <input type="text" id="transliterateTextarea" name="heading" required>
+
+    <label for="main">Main:</label>
+    <textarea id="transliterateTextarea2" name="main" rows="4" required></textarea>
+
+    <button class="btn">Submit</button>
+  </div>
+
+</body>
+
+<script>
+   
+    document.querySelector('.btn').addEventListener('click', function(e){
+        alert(document.querySelector('#date').value)
+        localStorage.setItem('date',document.querySelector('#date').value)
+        localStorage.setItem('pradhan',document.querySelector('#pradhan').value)
+        localStorage.setItem('mode',document.querySelector('#mode').value)
+        localStorage.setItem('attendance',document.querySelector('#attendance').value)
+        localStorage.setItem('meetingNumber',document.querySelector('#meetingNumber').value)
+        localStorage.setItem('heading',document.querySelector('#transliterateTextarea').value)
+        localStorage.setItem('main',document.querySelector('#transliterateTextarea2').value)
+        location.href="print.html"
+    })
+</script>
+</html>

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="http://vaani.neechalkaran.com/Scripts/google_jsapi.js">
+    </script>
+    <script type="text/javascript">
+
+      // Load the Google Transliterate API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+
+      function onLoad() {
+        var options = {
+            sourceLanguage:
+                google.elements.transliteration.LanguageCode.ENGLISH,
+            destinationLanguage:
+                [google.elements.transliteration.LanguageCode.HINDI],
+            shortcutKey: 'ctrl+b',
+            transliterationEnabled: true
+        };
+
+        // Create an instance on TransliterationControl with the required
+        // options.
+        var control =
+            new google.elements.transliteration.TransliterationControl(options);
+
+        // Enable transliteration in the textbox with id
+        // 'transliterateTextarea'.
+        control.makeTransliteratable(['transliterateTextarea']);
+      }
+      google.setOnLoadCallback(onLoad);
+    </script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem;
+
+        }
+    </style>
+  </head>
+  <body>
+    <!-- transliterateTextarea -->
+<div class="header">
+    <h1>ग्राम पंचायत मोहनी</h1>
+    <h2>विकास खंड बंजार जिला कुल्लू हिमाचल प्रदेश </h2>
+
+</div>
+<hr>
+<div class="main">
+  <p>आज दिनाक <span  id="date"></span> को प्रधान <span id="pradhan"></span> की अध्यक्षता में ग्राम पंचायत की <span id="mode"></span> में उपस्थिति सदस्यों द्वारा पारित प्रस्ताव संख्या नंबर <span id="meetingNumber"></span> की  कार्यवाही रजिस्टर की वास्तविक प्रतिलिपि </p>
+</div>
+<p><b> प्रस्ताव संख्या <span id="meetingNumber2"></span>:- <span id="heading"></span></b></p>
+<p> सर्वसहमति से <span id="main"></span></p>
+<button id="pdfbtn" onclick="saveAsPDF()">Save as PDF</button>
+  </body>
+  <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+
+  <script>
+    function saveAsPDF() {
+    var elementToExclude = document.getElementById('pdfbtn');
+    document.getElementById('pdfbtn').hidden=true
+    html2pdf(document.body, {
+      margin: 10,
+      exclude: [elementToExclude],
+      filename: 'your_document.pdf',
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    });
+  }
+    // document.querySelector('#date').value="helloo "
+    document.querySelector('#date').innerHTML=localStorage.getItem('date');
+    document.querySelector('#pradhan').innerHTML=localStorage.getItem('pradhan');
+    document.querySelector('#mode').innerHTML=localStorage.getItem('mode');
+    document.querySelector('#meetingNumber').innerHTML=localStorage.getItem('meetingNumber');
+    document.querySelector('#meetingNumber2').innerHTML=localStorage.getItem('meetingNumber');
+    document.querySelector('#heading').innerHTML=localStorage.getItem('heading');
+    document.querySelector('#main').innerHTML=localStorage.getItem('main');
+  </script>
+</html> 
